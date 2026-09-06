@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Falling I piece (cyan) -->
+    <path
+        android:fillColor="#00FFFF"
+        android:pathData="M18.9,9.9h16.2v16.2h-16.2z M36.9,9.9h16.2v16.2h-16.2z M54.9,9.9h16.2v16.2h-16.2z M72.9,9.9h16.2v16.2h-16.2z" />
+    <!-- T piece mid-stack (magenta/pink) -->
+    <path
+        android:fillColor="#D75FAF"
+        android:pathData="M36.9,27.9h16.2v16.2h-16.2z M18.9,45.9h16.2v16.2h-16.2z M36.9,45.9h16.2v16.2h-16.2z M54.9,45.9h16.2v16.2h-16.2z" />
+    <!-- S piece settled (green) -->
+    <path
+        android:fillColor="#00D700"
+        android:pathData="M36.9,63.9h16.2v16.2h-16.2z M54.9,63.9h16.2v16.2h-16.2z M18.9,81.9h16.2v16.2h-16.2z M36.9,81.9h16.2v16.2h-16.2z" />
+    <!-- Warm accent cell: settled corner (orange) to balance the palette -->
+    <path
+        android:fillColor="#FF5F00"
+        android:pathData="M54.9,81.9h16.2v16.2h-16.2z" />
+</vector>
