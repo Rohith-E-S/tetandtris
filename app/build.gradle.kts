@@ -14,14 +14,33 @@ android {
         applicationId = "com.rohith.tetandris"
         minSdk = 26
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = (findProperty("versionCode") as String?)?.toIntOrNull() ?: 1
+        versionName = (findProperty("versionName") as String?) ?: "1.0"
+    }
+
+    signingConfigs {
+        create("release") {
+            val keystorePropertiesFile = rootProject.file("keystore.properties")
+            if (keystorePropertiesFile.exists()) {
+                val props = java.util.Properties().apply {
+                    load(keystorePropertiesFile.inputStream())
+                }
+                storeFile = file(props.getProperty("storeFile"))
+                storePassword = props.getProperty("storePassword")
+                keyAlias = props.getProperty("keyAlias")
+                keyPassword = props.getProperty("keyPassword")
+            }
+        }
     }
 
     buildTypes {
         release {
             optimization {
                 enable = false
+            }
+            val keystorePropertiesFile = rootProject.file("keystore.properties")
+            if (keystorePropertiesFile.exists()) {
+                signingConfig = signingConfigs.getByName("release")
             }
         }
     }
