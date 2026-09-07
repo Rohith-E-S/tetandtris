@@ -203,11 +203,7 @@ fun GameScreen(vm: GameViewModel = viewModel()) {
                 PadButton("▼", onHold = { active -> vm.setSoftDropping(active) })
                 PadButton("⟳", onDown = {
                     haptics.performHapticFeedback(HapticFeedbackType.TextHandleMove)
-                    vm.onTap(0.9f)
-                })
-                PadButton("⤓", onDown = {
-                    haptics.performHapticFeedback(HapticFeedbackType.LongPress)
-                    vm.onDoubleTap()
+                    vm.onTap()
                 })
                 PadButton("H", onDown = { vm.onLongPress() })
             }
@@ -275,12 +271,10 @@ private fun MenuCard(
 }
 
 private val HowToLines = listOf(
-    "Tap left third — rotate counter-clockwise",
-    "Tap — rotate clockwise",
+    "Tap — rotate counter-clockwise",
     "Drag sideways — move",
-    "Drag down — soft drop",
-    "Flick down / double tap — hard drop",
-    "Touch and hold — hold a piece for later",
+    "Drag straight down — soft drop",
+    "Double tap — hold a piece for later",
     "",
     "Sprint — clear 40 lines as fast as you can",
     "Ultra — score as much as you can in 2:00"
