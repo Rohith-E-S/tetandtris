@@ -17,11 +17,12 @@ adb install app/build/outputs/apk/debug/app-debug.apk
 
 ## Controls
 
-- tap right 2/3 — rotate clockwise, tap left 1/3 — rotate counter-clockwise
-- double tap or fast flick down — hard drop
-- long press — hold
+- tap — rotate counter-clockwise
+- double tap — hold a piece for later
 - horizontal drag — move (smooth DAS)
-- vertical drag — soft drop while held
+- straight-down drag — soft drop while held
+  (diagonal drags prioritise horizontal so the piece doesn't speed up
+  while you're aiming toward a column)
 - `II` (top-left corner) pauses, `?` (top-right) explains
 - resuming runs a 3-2-1 countdown; back button pauses
 - controls mode (Gestures / Both / Buttons) is picked from the start & pause menus

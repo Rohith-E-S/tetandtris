@@ -228,10 +228,10 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     /**
-     * Tap zones: left third = rotate CCW (discoverable, precise),
-     * rest = rotate CW. Handles start / help / pause / game-over first.
+     * Tap always rotates the falling piece counter-clockwise. Handles
+     * start / help / pause / game-over first.
      */
-    fun onTap(xFrac: Float = 0.5f) {
+    fun onTap() {
         val s = _state.value
         if (s.showHelp) {
             dismissHelp()
@@ -251,16 +251,14 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
             restart()
             return
         }
-        val dir = if (xFrac < 0.33f) RotationDirection.CounterClockwise else RotationDirection.Clockwise
-        engine.rotate(dir, now())
+        engine.rotate(RotationDirection.CounterClockwise, now())
         emit()
     }
 
     fun onDoubleTap() {
         val s = _state.value
         if (!s.started || s.paused || s.showHelp || s.countdown != null || s.engine.ended) return
-        s.engine.hardDrop(now())
-        persistBestIfNeeded()
+        s.engine.hold(now())
         emit()
     }
 
@@ -278,11 +276,6 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
             s.engine.shift(if (dxCells > 0) ShiftDirection.Right else ShiftDirection.Left, now())
         }
         emit()
-    }
-
-    fun onFlickDown() {
-        // Fast swipe down = hard drop (safer than double-tap alone).
-        onDoubleTap()
     }
 
     fun setSoftDropping(active: Boolean) {
