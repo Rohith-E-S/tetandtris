@@ -34,6 +34,7 @@ fun Modifier.tuiGestures(
 
         var accX = 0f
         var totalDx = 0f
+        var totalDy = 0f
         var movedSteps = false
         val cellH = cellHeightPx().coerceAtLeast(8f)
         val stepPx = maxOf(cellH * 0.6f, 12f)
@@ -52,8 +53,12 @@ fun Modifier.tuiGestures(
             }
 
             // Raw delta since last event (ignores consumption bookkeeping).
+            // Both axes feed the tap-vs-drag classifier: a straight-down
+            // soft-drop drag must NOT look like a tap on release.
             val dx = change.position.x - change.previousPosition.x
+            val dy = change.position.y - change.previousPosition.y
             totalDx += dx
+            totalDy += dy
 
             accX += dx
             val steps = (accX / stepPx).toInt()
@@ -77,7 +82,7 @@ fun Modifier.tuiGestures(
 
         vm.setSoftDropping(false)
 
-        val totalDist = abs(totalDx)
+        val totalDist = maxOf(abs(totalDx), abs(totalDy))
 
         if (!movedSteps && totalDist < touchSlop) {
             // Pure tap. Single tap is held until the double-tap window closes:
