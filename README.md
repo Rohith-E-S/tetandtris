@@ -18,7 +18,7 @@ adb install app/build/outputs/apk/debug/app-debug.apk
 ## Controls
 
 - tap — rotate counter-clockwise
-- double tap — hold a piece for later
+- two-finger tap — hold a piece for later
 - horizontal drag — move (smooth DAS)
 - straight-down drag — soft drop while held
   (diagonal drags prioritise horizontal so the piece doesn't speed up

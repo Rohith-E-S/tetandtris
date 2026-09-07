@@ -274,7 +274,7 @@ private val HowToLines = listOf(
     "Tap — rotate counter-clockwise",
     "Drag sideways — move",
     "Drag straight down — soft drop",
-    "Double tap — hold a piece for later",
+    "Two-finger tap — hold a piece for later",
     "",
     "Sprint — clear 40 lines as fast as you can",
     "Ultra — score as much as you can in 2:00"

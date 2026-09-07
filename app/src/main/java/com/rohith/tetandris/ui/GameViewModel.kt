@@ -255,7 +255,11 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
         emit()
     }
 
-    fun onDoubleTap() {
+    /**
+     * Two-finger tap holds the falling piece (swap with the held piece).
+     * Ignored outside active play.
+     */
+    fun onTwoFingerTap() {
         val s = _state.value
         if (!s.started || s.paused || s.showHelp || s.countdown != null || s.engine.ended) return
         s.engine.hold(now())
